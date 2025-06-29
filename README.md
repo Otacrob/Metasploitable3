@@ -2,9 +2,7 @@
 
 ## 📘 Introduction
 
-This lab simulates a real-world penetration test against the vulnerable VM **Metasploitable3** using **Kali Linux** as the attacking machine. The goal is to perform reconnaissance, exploitation, and privilege escalation, while documenting every step through screenshots.
-
----
+This lab simulates a real-world penetration test against the vulnerable VM Metasploitable3 using Kali Linux as the attacking machine. The goal of this lab is to highlight the vulnerabilities of an outdated system and emphasize the importance of keeping machines patched. Through a series of steps including reconnaissance, exploitation, and privilege escalation, we demonstrate how attackers can compromise unpatched systems — documenting each phase with detailed screenshots.
 
 ## 🛠️ Lab Setup
 
@@ -17,7 +15,7 @@ This lab simulates a real-world penetration test against the vulnerable VM **Met
 
 ## 1️⃣ Scanning the Network
 
-We use `nmap` to detect live hosts in our subnet.
+We use `nmap` on Kali Linux to detect live hosts in our subnet.
 
 ```bash
 nmap -sn 172.28.128.0/24
@@ -29,7 +27,7 @@ nmap -sn 172.28.128.0/24
 
 ## 2️⃣ Scanning the Target Machine
 
-We perform a detailed scan to identify open ports and services.
+After discovering a potential victim, We perform a detailed scan to identify open ports and services.
 
 ```bash
 nmap -sS -sV -sC -O -Pn 172.28.128.3
@@ -41,7 +39,7 @@ nmap -sS -sV -sC -O -Pn 172.28.128.3
 
 ## 3️⃣ Opening Metasploit
 
-We launch the Metasploit Framework:
+We noticed, among all the results, a FTP vulnerability. We launch the Metasploit Framework:
 
 ```bash
 msfconsole
@@ -129,11 +127,14 @@ We identify Dirty COW as a potential escalation path.
 
 ## 🔟 Attempted Privilege Escalation
 
-We attempt to exploit Dirty COW, which appears to work but doesn’t yield a root shell directly.
+We attempt to exploit Dirty COW, and after running the script we could finally gain root privileges.
 
 ![Privilege Escalation Attempt](screenshots/10.Exploiting_And_Updating_Root_Privileges.png)
 
 ---
+
+With full system control achieved, the attacker now has unlimited potential to manipulate, exfiltrate, or disrupt any aspect of the machine.
+
 
 ## ✅ Conclusion
 
@@ -141,6 +142,4 @@ We attempt to exploit Dirty COW, which appears to work but doesn’t yield a roo
 - ✔️ Exploit executed successfully using Metasploit
 - ✔️ Post-exploitation enumeration completed
 - ✔️ Privilege escalation attempted using Dirty COW
-- ❗ Root access not achieved, but vector validated
-
-This lab illustrates a full cycle of a basic penetration test in a controlled environment.
+- ✔️ Root access achieved
